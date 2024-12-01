@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+
+mkdir $1 &&
+
+echo "#!/usr/bin/python3
+
+import sys
+import os
+
+
+dayNum = sys.argv[1]
+
+def padNum(s, l):
+    ret = s
+    while (len(ret) < l):
+        ret = '0' + ret
+
+    return ret
+
+paddedDayNum = padNum(dayNum, 2)
+dayName = 'day_' + str(paddedDayNum)
+
+os.mkdir(dayName)
+os.system(\"cd \" + str(dayName) + \" && cargo init .\")
+" >> $1/newday &&
+
+chmod +x $1/newday
